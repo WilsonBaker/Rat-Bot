@@ -7,6 +7,8 @@ const commands = [
 	new SlashCommandBuilder().setName('ping').setDescription('Replies with pong!'),
 	new SlashCommandBuilder().setName('server').setDescription('Replies with server info!'),
 	new SlashCommandBuilder().setName('user').setDescription('Replies with user info!'),
+    new SlashCommandBuilder().setName('stock').setDescription('Reccomends a random stock to the user'),
+    new SlashCommandBuilder().setName('crypto').setDescription('Reccomends a random cypto to the user'),
 ]
 	.map(command => command.toJSON());
 

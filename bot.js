@@ -9,6 +9,24 @@ client.once('ready', () => {
     console.log("BRuh");
 });
 
+client.on('interactionCreate', async interaction => {
+	if (!interaction.isCommand()) return;
+
+	const { commandName } = interaction;
+
+	if (commandName === 'ping') {
+		await interaction.reply('Pong!');
+	} else if (commandName === 'server') {
+		await interaction.reply('Server info.');
+	} else if (commandName === 'user') {
+		await interaction.reply('User info.');
+	} else if (commandName === 'stock') {
+		await interaction.reply('Stronks to the moon');
+    } else if (commandName === 'crypto') {
+		await interaction.reply('Crypto baby');
+    }
+});
+
 // Login to Discord with client token
 try{
     client.login(token);
