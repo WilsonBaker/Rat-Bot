@@ -1,5 +1,7 @@
 const { Client, Intents } = require('discord.js');
 const { token } = require('./config.json');
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+var stocks = require('./stocks.json');
 
 // New client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
@@ -21,9 +23,13 @@ client.on('interactionCreate', async interaction => {
 	} else if (commandName === 'user') {
 		await interaction.reply('User info.');
 	} else if (commandName === 'stock') {
-		await interaction.reply('Stronks to the moon');
+        await interaction.deferReply();
+        genStock = null
+        genStock = await generateStock();
+        await interaction.editReply('https://www.google.com/search?q=' + genStock + "+stock")
     } else if (commandName === 'crypto') {
-		await interaction.reply('Crypto baby');
+        await interaction.deferReply();
+		await interaction.reply('Crypto incoming...');
     }
 });
 
@@ -32,4 +38,14 @@ try{
     client.login(token);
 } catch(err) {
     console.log(err);
+}
+
+async function generateStock() {
+    let random = Math.floor(Math.random() * Math.floor(stocks.length));
+    curStock = stocks[random];
+    return curStock;
+}
+
+function generatecCrypto() {
+    console.log("Crypto incoming...")
 }
