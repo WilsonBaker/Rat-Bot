@@ -1,7 +1,17 @@
 const { Client, Intents } = require('discord.js');
 const { token } = require('./config.json');
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
-var stocks = require('./stocks.json');
+var stocks = require('./stocks.json');  
+const express = require('express')
+const path = require('path')
+const PORT = process.env.PORT || 5000
+
+express()
+  .use(express.static(path.join(__dirname, 'public')))
+  .set('views', path.join(__dirname, 'views'))
+  .set('view engine', 'ejs')
+  .get('/', (req, res) => res.render('pages/index'))
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 // New client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
