@@ -1,13 +1,7 @@
 const { Client, Intents } = require('discord.js');
 const { token } = require('./config.json');
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
-var stocks = require('./stocks.json');  
-const express = require('express')
-const path = require('path')
-const PORT = process.env.PORT || 5000
-
-express()
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+var stocks = require('./stocks.json');
 
 // New client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
