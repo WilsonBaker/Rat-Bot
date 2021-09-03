@@ -1,5 +1,5 @@
 const { Client, Intents } = require('discord.js');
-const { token } = require('./config.json');
+//const { token } = require('./config.json');
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 var stocks = require('./stocks.json');
 
@@ -35,7 +35,7 @@ client.on('interactionCreate', async interaction => {
 
 // Login to Discord with client token
 try{
-    client.login(token);
+    client.login(process.env.DJS_TOKEN);
 } catch(err) {
     console.log(err);
 }
