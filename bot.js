@@ -29,7 +29,7 @@ client.on('interactionCreate', async interaction => {
         await interaction.editReply('https://www.google.com/search?q=' + genStock + "+stock")
     } else if (commandName === 'crypto') {
         await interaction.deferReply();
-		await interaction.reply('Crypto incoming...');
+		await interaction.editReply('Crypto incoming...');
     }
 });
 
