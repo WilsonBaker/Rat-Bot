@@ -9,10 +9,11 @@ const commands = [
 	new SlashCommandBuilder().setName('user').setDescription('Replies with user info!'),
     new SlashCommandBuilder().setName('stock').setDescription('Reccomends a random stock to the user'),
     new SlashCommandBuilder().setName('crypto').setDescription('Reccomends a random cypto to the user'),
+	new SlashCommandBuilder().setName('updatestocks').setDescription('Updates the list of stocks to most recent data'),
 ]
 	.map(command => command.toJSON());
 
-const rest = new REST({ version: '9' }).setToken(token);
+const rest = new REST({ version: '9' }).setToken(process.env.DJS_TOKEN);
 
 (async () => {
 	try {

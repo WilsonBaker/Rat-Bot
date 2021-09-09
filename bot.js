@@ -2,6 +2,7 @@ const { Client, Intents } = require('discord.js');
 //const { token } = require('./config.json');
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 var stocks = require('./stocks.json');
+const { exec } = require('child_process');
 
 // New client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
@@ -30,6 +31,10 @@ client.on('interactionCreate', async interaction => {
     } else if (commandName === 'crypto') {
         await interaction.deferReply();
 		await interaction.editReply('Crypto incoming...');
+    } else if (commandName === 'updateStocks') {
+        await interaction.deferReply();
+        await updateStocks()
+		await interaction.editReply('Successfully updated stock list');
     }
 });
 
@@ -44,6 +49,17 @@ async function generateStock() {
     let random = Math.floor(Math.random() * Math.floor(stocks.length));
     curStock = stocks[random];
     return curStock;
+}
+
+async function updateStocks() {
+    var yourscript = exec('sh grabStocks.sh',
+        (error, stdout, stderr) => {
+            console.log(stdout);
+            console.log(stderr);
+            if (error !== null) {
+                console.log(`exec error: ${error}`);
+            }
+        });
 }
 
 function generatecCrypto() {
