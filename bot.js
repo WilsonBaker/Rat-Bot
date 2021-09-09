@@ -31,7 +31,7 @@ client.on('interactionCreate', async interaction => {
     } else if (commandName === 'crypto') {
         await interaction.deferReply();
 		await interaction.editReply('Crypto incoming...');
-    } else if (commandName === 'updateStocks') {
+    } else if (commandName === 'updatestocks') {
         await interaction.deferReply();
         await updateStocks()
 		await interaction.editReply('Successfully updated stock list');
